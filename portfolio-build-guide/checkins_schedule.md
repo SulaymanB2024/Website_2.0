@@ -372,3 +372,276 @@ Why this is important: This final loop of fixing and re-testing is what polishes
 </self_audit_checklist>
 
 </claude_guide_phase>
+# Phase 6: Interactivity Strategy for Sulayman Bowles's Portfolio (Palantir Aesthetic)
+
+<claude_guide_phase>
+
+<persona_instruction>
+As the Expert Code Lead guiding the Developer (via Claude 4, operating in Agent mode), your primary objective in this phase is to define and oversee the precise implementation of all interactive behaviors and animations for Sulayman Bowles's portfolio. This is where the "Personal Intelligence Platform" concept truly comes alive. This includes:
+* Implementing the dynamic functionality of the chosen "Primary Interactive Narrative Pattern" (e.g., Network Graph from `P1_Chosen_Interactive_Pattern_Rationale.md`) and its mobile adaptations.
+* Executing all global UI animations (entry, navigation, transitions) and micro-interactions for common elements, strictly adhering to the Palantir aesthetic and the parameters defined in `P2_Motion_Design_Detailed_Specs_V1.md`.
+* Bringing to life custom graphics with subtle, purposeful animations (e.g., SVG path animations for dividers/glyphs, "Data Flow" on graph edges).
+* Implementing interactivity for any approved optional features, like the "Live Technical Analysis API" module.
+All interactive elements must be performant, fully keyboard accessible, provide appropriate ARIA attributes, and respect "Reduce Motion" preferences. Your guidance will ensure every animation and interaction is purposeful, enhances clarity, and contributes to a sophisticated, data-driven user experience.
+</persona_instruction>
+
+<claude_notes_section>
+</claude_notes_section>
+
+## 1. Purpose of This Phase
+
+<phase_purpose>
+This phase aims to:
+1.  Implement all defined animations and micro-interactions for global elements (site load, monogram reveal, navigation feedback, page transitions, button and icon interactions), ensuring they are subtle, purposeful, and align with the Palantir aesthetic's "engineered elegance" as specified in `P2_Motion_Design_Detailed_Specs_V1.md`.
+2.  Fully develop the interactive functionality of the chosen "Primary Interactive Narrative Pattern" (e.g., Network Graph), including all user interactions (hover, click, filter, zoom/pan if applicable), data-driven visual feedback (e.g., "Data Flow" animations on edges), detail panel reveals (Side Drawer), and its distinct mobile adaptation behaviors.
+3.  Implement animations for data visualization elements within content (e.g., chart data materialization for mini-visuals in case studies, animated "Stat Callouts").
+4.  Develop the full suite of interactions for any approved optional features, such as the user controls and real-time data updates within the "Live Technical Analysis API" module.
+5.  Ensure all interactive elements are highly performant, fully keyboard accessible with appropriate ARIA attributes for state and properties, and correctly implement "Reduce Motion" functionality.
+Success in this phase means the portfolio is dynamically engaging, responsive, and intuitive to interact with, where every animation and interaction serves to enhance user understanding and reinforce Sulayman's sophisticated, data-driven personal brand.
+</phase_purpose>
+
+## 2. Key Deliverables
+
+<key_deliverables_list>
+By the end of this phase, the Developer, guided by you (Claude 4), should have:
+* <deliverable type="FEATURE_IMPLEMENTATION" id="P6_Global_Animations_And_Microinteractions_Live">All global animations (page load, monogram reveal from `P2_Motion_Design_Detailed_Specs_V1.md`, navigation transitions, button/icon micro-interactions) are implemented and functional.</deliverable>
+* <deliverable type="FEATURE_IMPLEMENTATION" id="P6_Interactive_Narrative_Desktop_Live">The chosen "Primary Interactive Narrative Pattern" (e.g., Network Graph) is fully interactive on desktop, including all defined hover/click states, "Data Flow" animations, filter mechanisms, detail panel reveals (e.g., Side Drawer), and "Guided Discovery Path" features, if planned.</deliverable>
+* <deliverable type="FEATURE_IMPLEMENTATION" id="P6_Interactive_Narrative_Mobile_Live">The mobile/tablet adaptation of the "Primary Interactive Narrative Pattern" (e.g., Master-Detail List or Filtered Accordion for Network Graph) is fully interactive with specified touch-optimized behaviors.</deliverable>
+* <deliverable type="FEATURE_IMPLEMENTATION" id="P6_Content_Animations_Live">Animations for data presentation (e.g., "Stat Callout" count-ups, chart data materialization) and content block reveals (e.g., sequential fade-ins for "Problem/Approach/Outcome" sections) are implemented.</deliverable>
+* <deliverable type="FEATURE_IMPLEMENTATION_CONDITIONAL" id="P6_Live_API_Module_Fully_Interactive">(If approved in `P2_Live_API_Feature_Decision_And_Pattern.md`) The "Live Technical Analysis API" module is fully interactive, including user controls (e.g., for asset selection, timeframes, indicators), real-time chart updates, and data feedback mechanisms.</deliverable>
+* <deliverable type="ACCESSIBILITY_IMPLEMENTATION" id="P6_Reduce_Motion_Implemented_Globally">A global "Reduce Motion" setting (respecting OS preference `prefers-reduced-motion` and/or a site toggle from Accessibility Settings Panel) is comprehensively implemented and demonstrably disables or minimizes all non-essential animations across the entire site.</deliverable>
+* <deliverable type="DOCUMENTATION_UPDATE" id="P6_Motion_Design_Specs_Final.md">The `P2_Motion_Design_Detailed_Specs_V1.md` document is updated to `P6_Motion_Design_Specs_Final.md` with any refinements or new animation parameters discovered during implementation.</deliverable>
+* <deliverable type="DEMO_COLLECTION" id="P6_Comprehensive_Interactivity_Demos.zip">A collection of screen recordings or a link to a Storybook/dev deployment showcasing all key implemented interactive features and animations on both desktop and mobile, including "Reduce Motion" mode.</deliverable>
+* <deliverable type="TODO" assigned_to="Developer" id="P6_Todo_AnimationPerformanceProfiling">Developer to conduct initial performance profiling of all significant animations and interactive components using browser developer tools, logging any jank or high CPU usage.</deliverable>
+* <deliverable type="TODO" assigned_to_Developer" id="P6_Todo_KeyboardA11yForInteractions">Developer to perform initial keyboard accessibility testing for all newly interactive elements, ensuring all can be reached and operated.</deliverable>
+</key_deliverables_list>
+
+## 3. Guiding the Developer: Phase Tasks & Prompts
+
+<tasks_for_claude>
+
+### Task 6.1: Implementing Global UI Animations & Micro-interactions
+<task id="6.1_ImplementGlobalAndUIMicroAnimations">
+  <objective>To implement site-wide entry animations, navigation transitions, and standard micro-interactions for common UI elements, ensuring strict adherence to `P2_Motion_Design_Detailed_Specs_V1.md` and Palantir's utilitarian motion philosophy.</objective>
+  <prompt_to_developer>
+    <instruction_for_claude>You (Claude 4) will say this to the Developer:</instruction_for_claude>
+    <prompt_text>
+"Developer, let's animate the foundational UI elements to create a polished and responsive feel, as per `P2_Motion_Design_Detailed_Specs_V1.md`:
+1.  **Entry Animations:**
+    * Implement the 'SB' monogram reveal in the header (e.g., SVG lines drawing over 300ms using Vivus.js if appropriate, or CSS animation).
+    * Implement the staggered fade-in and slight upward translate for the homepage tagline (50ms inter-element delay, 150ms duration, ease-out).
+2.  **Navigation & Page Transitions:**
+    * Implement the smooth transition (e.g., slide/resize over 200ms, ease-in-out) for the active link indicator in the main navigation.
+    * Implement the approved site-wide page transition effect (e.g., 'Data Grid Overlay' fade over 300ms, or 'Panel Reconfiguration' slide). This must integrate with your routing solution and fully respect 'Reduce Motion'.
+3.  **UI Element Micro-interactions (BlueprintJS based where applicable):**
+    * Implement button press states (1px downward/inward shift, 100ms, ease-out).
+    * Implement smooth transitions (150ms, ease-out) for interactive icon hovers/activations (rotations for chevrons, scale/fill changes for others).
+    * Implement feedback for filter control applications (e.g., brief accent color flash or checkmark animation on BlueprintJS `Checkbox` elements, 150ms).
+4.  **Loading State Animations:** Ensure the 'shimmer' animation for BlueprintJS `Skeleton` components is applied consistently where data loading occurs (1.5s gradient wipe, linear, infinite).
+5.  **Tooltip/Popover Animations:** Confirm BlueprintJS `Popover`/`Tooltip` transitions are quick (100-150ms fade-in/scale-up, ease-out) and directionally logical. Adjust default BlueprintJS animation curves if necessary to match our motion spec.
+6.  **"Reduce Motion" Compliance:** For every animation, implement CSS or JavaScript logic to disable or simplify it when the 'Reduce Motion' preference is active.
+
+<definition_of_done>
+* All listed global and UI element animations are implemented as specified.
+* Timings, easing functions, and visual outcomes precisely match `P2_Motion_Design_Detailed_Specs_V1.md`.
+* Animations are smooth and initial performance checks (browser dev tools) show no jank.
+* All animations correctly respect the "Reduce Motion" setting.
+</definition_of_done>
+Why this is important: These foundational animations and micro-interactions establish the portfolio's responsive and precise character, directly reflecting the Palantir aesthetic of engineered elegance."
+    </prompt_text>
+  </prompt_to_developer>
+  <expected_artifact type="DEMO_VIDEO_OR_STORYBOOK_LINKS">`P6_Global_Animations_Implemented` - Demonstration of these animations in isolation or on basic page layouts.</expected_artifact>
+</task>
+
+### Task 6.2: Implementing Full Interactivity for "Primary Interactive Narrative Pattern" (Desktop & Mobile)
+<task id="6.2_ImplementFullInteractiveNarrative">
+  <objective>To fully develop all interactive functionalities for the chosen "Primary Interactive Narrative Pattern" (e.g., Network Graph) and its approved mobile/tablet adaptation (e.g., Master-Detail List), including data binding, all user interactions, visual feedback animations, and detail reveals.</objective>
+  <prompt_to_developer>
+    <instruction_for_claude>You (Claude 4) will say this to the Developer:</instruction_for_claude>
+    <prompt_text>
+"Developer, this is the centerpiece. Implement full interactivity for the chosen 'Primary Interactive Narrative Pattern' (e.g., 'Interactive Skill-Project Network Graph') and its mobile adaptation:
+
+**Desktop Version (e.g., Network Graph):**
+1.  **Data Integration:** Bind the graph components (`DesktopGraphView.js`, `DesktopGraphNode.js`, etc. from `P4_Core_Architecture.md`) to `P4_Initial_Portfolio_Content_Sample.json`. Ensure dynamic rendering based on this data.
+2.  **Node Interactions:**
+    * Implement hover effects: node glow/border accent, connection highlighting, dimming of unrelated nodes, as per `P2_Motion_Design_Detailed_Specs_V1.md`.
+    * Implement "Data Flow" animation on edges (e.g., 500ms accent-colored pulse) upon hover/filter.
+    * On click: Smoothly open the `DetailSideDrawer.js`, populated with structured content ("Problem → Approach → Outcome → Metrics"). Implement "Focus Scope" effect on the main graph.
+3.  **Filter & Legend Interactivity:** Ensure filter controls (`FilterPanel.js`) dynamically update the graph with smooth transitions. Interactive legend elements should also correctly filter/highlight the graph.
+4.  **"Guided Discovery Paths" (If Approved):** Implement the UI for path selection and the sequential node highlighting/annotation reveal animations.
+5.  **Keyboard Navigation & ARIA:** Ensure all graph nodes, filter controls, and legend items are fully keyboard navigable, with dynamic `aria-label`s for nodes and appropriate ARIA states for all interactive elements.
+
+**Mobile/Tablet Adaptation (e.g., Master-Detail List from `Mobile_Adaptation_Palantir_Viz.md`):**
+6.  **Component Implementation:** Build and style the mobile-specific components (e.g., `MobileListView.js`, `DomainMasterListItem_Mobile.js`, `ProjectCard_Mobile.js`).
+7.  **Touch-Optimized Interactions:** Implement responsive tap interactions for list selections, accordion expansions, or other defined mobile patterns. Convert desktop hover interactions to tap-based reveals (e.g., details in a bottom sheet or expanded card).
+8.  **Data & Content Display:** Ensure content from `P4_Initial_Portfolio_Content_Sample.json` is correctly displayed and formatted for mobile readability, respecting Content Strategy.
+9.  **Performance:** Crucially, ensure both desktop and mobile versions are performant. Profile interactions. For mobile lists, implement virtualization if data is extensive.
+
+<definition_of_done>
+* Desktop interactive pattern is fully functional with all specified interactions, animations, and data binding.
+* Mobile adaptation pattern is fully functional with touch-optimized interactions and data display.
+* All interactions are performant and smooth on respective target platforms.
+* Comprehensive keyboard accessibility and ARIA attributes are implemented for both versions.
+* "Reduce Motion" is respected for all animations within this feature.
+</definition_of_done>
+Why this is important: The success of this central interactive narrative feature is critical to conveying Sulayman's unique value proposition. It must be intuitive, engaging, informative, and flawlessly executed on all devices."
+    </prompt_text>
+  </prompt_to_developer>
+  <expected_artifact type="DEMO_VIDEO_OR_STORYBOOK_LINKS">`P6_Primary_Interactive_Narrative_Pattern_Fully_Interactive` (Desktop demo).</expected_artifact>
+  <expected_artifact type="DEMO_VIDEO_OR_STORYBOOK_LINKS">`P6_Mobile_Adaptation_Interactive_Narrative_Interactive` (Mobile/tablet demo).</expected_artifact>
+</task>
+
+### Task 6.5 (Renumbered from previous plan): Implementing Content Reveal & Other Specified Animations
+<task id="6.5_ImplementContentAndGraphicAnimations">
+  <objective>To implement various content reveal animations (e.g., for "Stat Callouts", text blocks) and animations for custom graphic elements (e.g., SVG section dividers), adhering to `P2_Motion_Design_Detailed_Specs_V1.md`.</objective>
+  <prompt_to_developer>
+    <instruction_for_claude>You (Claude 4) will say this to the Developer:</instruction_for_claude>
+    <prompt_text>
+"Developer, let's implement the remaining animations that enhance content presentation and visual polish, as defined in `P2_Motion_Design_Detailed_Specs_V1.md` and our discussions:
+1.  **Animated "Stat Callouts" & "Impact Visualizations":**
+    * Implement the number count-up animation (e.g., 300-500ms) for stat callouts when they become visible (e.g., in detail drawers, case studies).
+    * If planned, implement any associated animated micro-visualizations or glyph animations (e.g., progress bar fill, icon pulse).
+2.  **Sequential Content Block Reveals:** For structured text blocks (e.g., "Problem," "Approach," "Outcome" sections in case studies or detail views), implement the staggered fade-in and slight upward translate effect (150ms duration per block, 50-100ms stagger) as they scroll into view or upon container reveal.
+3.  **Animated Custom Graphic Elements:**
+    * For SVG section dividers: Implement their "construction" or "draw-in" animation on scroll (e.g., using Vivus.js or GSAP DrawSVGPlugin, 400-600ms).
+    * For custom spot glyphs: Implement their subtle hover/focus animations (e.g., opacity shift, slight scale pulse, 120-150ms) and any "materialize" animations on first appearance.
+4.  **Scroll-Based Animations (Conservative Application):**
+    * Implement any approved subtle parallax effects for background graphics, ensuring minimal performance impact and adherence to 'Reduce Motion'.
+    * Implement smooth state transitions for sticky section headers (e.g., background/shadow fade over 200ms).
+5.  **"Insight Unlocked" Cue (If specified in `P4_Core_Architecture.md` data model):** Implement the subtle animation for this conditional cue on the Network Graph (e.g., key node pulse with unique color for 500ms).
+<definition_of_done>
+* All specified content reveal and custom graphic animations are implemented.
+* Animations are smooth, purposeful, and precisely match `P2_Motion_Design_Detailed_Specs_V1.md`.
+* Scroll-based animations are subtle and performant.
+* All animations respect the "Reduce Motion" global setting.
+</definition_of_done>
+Why this is important: These refined animations contribute significantly to the portfolio's polish, professional feel, and the engaging communication of key information and brand elements."
+    </prompt_text>
+  </prompt_to_developer>
+  <expected_artifact type="DEMO_VIDEO_OR_STORYBOOK_LINKS">`P6_Data_Viz_And_Content_Reveal_Animations_Implemented` (Showcasing various content and graphic animations).</expected_artifact>
+</task>
+
+### Task 6.4 (Renumbered, was 6.6): Implementing and Verifying "Reduce Motion" Functionality Globally
+<task id="6.4_ImplementAndVerifyReduceMotion"> <objective>To ensure a global "Reduce Motion" preference (respecting OS-level `prefers-reduced-motion` and/or a site-specific toggle) effectively disables or minimizes all non-essential animations across the entire website, as per accessibility best practices.</objective>
+  <prompt_to_developer>
+    <instruction_for_claude>You (Claude 4) will say this to the Developer:</instruction_for_claude>
+    <prompt_text>
+"Developer, robust 'Reduce Motion' support is a critical accessibility requirement. We need to implement and verify this globally:
+1.  **CSS Implementation:** Ensure your primary method for disabling/reducing animations is CSS-based, triggered by a class on the `<html>` or `<body>` element (e.g., `.reduce-motion-enabled`). This class should override or nullify animation/transition properties.
+    ```css
+    /* Example */
+    .reduce-motion-enabled * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important; /* Stop repeating animations */
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+    ```
+2.  **JavaScript Detection & Toggle:**
+    * Implement JavaScript to detect the `prefers-reduced-motion: reduce` media query and apply the `.reduce-motion-enabled` class by default if true.
+    * If a site-specific toggle is part of the Accessibility Settings Panel, ensure it can override the OS setting and persist its state (e.g., via `localStorage`).
+3.  **Comprehensive Application:** Systematically review EVERY animation and transition implemented across all components and global styles (entry animations, navigation, micro-interactions, graph/chart animations, content reveals, scroll effects). Confirm that the `.reduce-motion-enabled` class effectively stops or drastically simplifies them to essential, brief fades if some visual feedback for state change is still necessary.
+4.  **Thorough Testing:** Test the entire site with 'Reduce Motion' enabled (both via OS simulation and site toggle if present) on desktop and mobile. Verify there is no distracting or uncomfortable residual motion.
+
+<definition_of_done>
+* `prefers-reduced-motion` media query is detected and respected by default.
+* Site-specific 'Reduce Motion' toggle (if implemented) functions correctly and overrides OS preference.
+* ALL non-essential animations and transitions site-wide are demonstrably disabled or reduced to minimal, essential feedback when 'Reduce Motion' is active.
+* The user experience with 'Reduce Motion' active is clean, usable, and free of jarring motion.
+</definition_of_done>
+Why this is important: This ensures Sulayman's portfolio is inclusive and comfortable for users who are sensitive to motion or prefer a more static experience."
+    </prompt_text>
+  </prompt_to_developer>
+  <expected_artifact type="DEMO_VIDEO_OR_CONFIRMATION_WITH_SCREENSHOTS">`P6_Reduce_Motion_Functionality_Implemented_Globally` (Demonstration of 'Reduce Motion' active across various site sections and animations).</expected_artifact>
+</task>
+
+### Task 6.6 (Renumbered, was 6.4, Conditional): Implementing Interactivity for "Live Technical Analysis API" Module
+<task id="6.6_ImplementLiveAPIInteractivityConditional">
+  <objective>If the "Live Technical Analysis API" feature is approved (`P2_Live_API_Feature_Decision_And_Pattern.md`), to implement all its interactive functionalities, including user controls, real-time chart updates, and data feedback mechanisms, as per `Live_API_Feature_Integration_Patterns.md`.</objective>
+  <prompt_to_developer>
+    <instruction_for_claude>You (Claude 4) will say this to the Developer, ONLY if the Live API Feature was approved in Phase 2:</instruction_for_claude>
+    <prompt_text>
+"Developer, as we are implementing the 'Live Technical Analysis API' module using the [Insert Chosen Pattern from P2, e.g., Modal/Overlay with BlueprintJS `Dialog`], let's build its full interactivity:
+1.  **API Connection & Initial Data Load (`APIConnectorService.js`):** Implement logic to fetch initial data from the specified API (from `Live_API_Source_And_Scope.md` in Phase 2). Display loading states using BlueprintJS `Spinner` with the 'shimmer' animation. Gracefully handle API errors or empty responses with styled BlueprintJS `Callout` messages.
+2.  **Chart Rendering & Theming (`ChartDisplayComponent.js`):** Ensure the chart renders correctly with initial data, fully styled according to Palantir guidelines (colors, fonts, gridlines like #2C3A4A, axis labels #A0B0C0). Implement defined "Data Point Materialization" animations (e.g., lines drawing, bars growing).
+3.  **Control Panel Functionality (`IndicatorControlsPanel.js`):**
+    * Implement full functionality for all user controls: selecting assets/pairs, changing timeframes (e.g., via BlueprintJS `ButtonGroup`), adding/removing technical indicators, and configuring indicator parameters (e.g., via BlueprintJS `Select`, `MultiSelect`, `NumericInput`).
+    * Ensure the chart and any displayed metrics update dynamically and performantly in response to control changes.
+4.  **Real-Time Data Updates & Feedback:** Implement the chosen data update mechanism (polling or WebSockets). Visually indicate updates (e.g., "Data Pulse" effect on metrics, updated 'Last Updated' timestamp).
+5.  **Interactive Chart Features:** Implement interactive tooltips (styled BlueprintJS `Popover`) displaying precise values on chart hover/tap. If planned, enable other chart interactions like zoom/pan with keyboard equivalents.
+6.  **Accessibility:** Ensure all controls are keyboard accessible and have appropriate ARIA attributes. Chart data should be accessible as per `Advanced_Accessibility_Techniques.md`.
+
+<definition_of_done>
+* Live API module fetches, processes, and displays initial data correctly.
+* All user controls are fully functional and dynamically update the chart and related data.
+* Real-time data updates are implemented and clearly indicated.
+* Interactive tooltips and other chart interactions work as specified.
+* Loading states, error states, and empty states are handled gracefully.
+* The module is performant and keyboard accessible.
+* All animations respect 'Reduce Motion'.
+</definition_of_done>
+Why this is important: This optional feature is a direct showcase of Sulayman's technical abilities; its interactivity must be robust, intuitive, and align with the high standards of the rest of the portfolio."
+    </prompt_text>
+  </prompt_to_developer>
+  <expected_artifact type="FEATURE_DEMO_GIF_OR_VIDEO">(Conditional) `P6_Live_API_Module_Interactive` - Comprehensive demonstration of the fully interactive Live API module.</expected_artifact>
+</task>
+
+</tasks_for_claude>
+
+## 4. Check-In & Progress Verification
+
+<check_in_guidance>
+* **End of Phase 6 Check-In: Full Interactivity, Animation, and "Reduce Motion" Review**
+    <check_in_prompt>
+        <instruction_for_claude>You (Claude 4) will use this prompt to request all final Phase 6 artifacts and demonstrations:</instruction_for_claude>
+        <prompt_text>"Developer, this phase is where the portfolio truly comes alive. Please provide for a comprehensive review:
+        1. A collection of demonstrations (`P6_Comprehensive_Interactivity_Demos.zip` or links to a live dev server / Storybook) covering:
+            * `P6_Global_Animations_And_Microinteractions_Live`.
+            * `P6_Interactive_Narrative_Desktop_Live` (for the chosen primary interactive pattern).
+            * `P6_Interactive_Narrative_Mobile_Live` (its mobile adaptation).
+            * `P6_Content_Animations_Live` (including stat callouts, content block reveals, custom graphic animations).
+            * (If applicable) `P6_Live_API_Module_Fully_Interactive`.
+            * A clear demonstration of `P6_Reduce_Motion_Implemented_Globally` affecting all relevant animations.
+        2. Any updates to the motion design specifications, resulting in `P6_Motion_Design_Specs_Final.md`.
+        3. Confirmation and brief notes on initial animation performance profiling (`P6_Todo_AnimationPerformanceProfiling`).
+        4. Confirmation of initial keyboard accessibility testing for interactive elements (`P6_Todo_KeyboardA11yForInteractions`).
+        I will be reviewing all interactive elements and animations for their precision, purposefulness, performance, aesthetic alignment with Palantir principles, and comprehensive accessibility."</prompt_text>
+    </check_in_prompt>
+    <artifact_review_process>
+      <step>Claude 4 receives all demonstrations and documentation.</step>
+      <step>Claude 4 states review focus: "I am meticulously reviewing all implemented interactivity and animations across desktop and mobile to ensure:
+        * **Functional Correctness:** All interactive features operate precisely as specified in the task descriptions and `P2_Motion_Design_Detailed_Specs_V1.md` (now `P6_Motion_Design_Specs_Final.md`).
+        * **Aesthetic Alignment:** Animations are subtle, purposeful, and enhance the Palantir aesthetic, rather than detracting or feeling out of place. This includes custom graphic animations and data materialization effects.
+        * **Performance:** Interactions are smooth and responsive, with no noticeable jank or lag. Initial performance profiling notes are considered. (Interim guidance on CSS performance for animations should be applied if specific research is still pending).
+        * **Mobile Experience:** Touch interactions for mobile adaptations are intuitive and effective.
+        * **Accessibility:** All interactive elements are keyboard navigable, focus states are clear, and the 'Reduce Motion' functionality is comprehensively and correctly implemented across ALL animations. ARIA attributes for dynamic states are considered.
+        * **Data Integration:** Interactive elements correctly reflect and manipulate data from `P4_Initial_Portfolio_Content_Sample.json` where applicable."</step>
+      <step>
+        <condition>If all aligned:</condition>
+        <claude_response>"Phase 6 is successfully completed. The portfolio is now dynamically interactive and animated with exceptional precision and purpose, fully aligning with the Palantir aesthetic. All features are performant and respect accessibility for motion. This brings Sulayman's 'Personal Intelligence Platform' vividly to life. Approved. We are now ready for comprehensive testing in Phase 7: Responsiveness & Comprehensive Accessibility."</claude_response>
+      </step>
+      <step>
+        <condition>If revisions needed:</condition>
+        <claude_response>"Revisions are necessary to perfect the interactivity and animations:
+        * For Primary Interactive Pattern: `[e.g., 'The 'Data Flow' animation on the Network Graph edges is currently too fast and visually noisy; please reduce particle count/speed and adjust duration to 500ms with an ease-out function.']`
+        * For Mobile Interactivity: `[e.g., 'The tap target for expanding accordion sections in the mobile view of the Network Graph is too small and difficult to hit. Please ensure all touch targets meet the 44x44px minimum.']`
+        * For Accessibility/Reduce Motion: `[e.g., 'The 'Constellation Activation' animation for the Network Graph is not being disabled when 'Reduce Motion' is active. This is critical to fix.']`
+        * For Performance: `[e.g., 'The sequential fade-in for content blocks is causing noticeable layout shift (CLS) during scroll. Investigate using `transform: translateY` instead of margin, or pre-calculating space.']`
+        Please address these points based on our detailed specifications and provide updated demonstrations."</claude_response>
+      </step>
+    </artifact_review_process>
+</check_in_guidance>
+
+## 5. Prompt-Engineering Best Practices for Claude 4 (Self-Audit)
+
+<self_audit_checklist>
+* **Agentic Proactivity & Parameter Precision:** Have I ensured that my prompts to the Developer provide extremely precise, parameter-driven descriptions for *every* animation and interaction? Are timings (e.g., 150ms, 300ms), easing functions (e.g., ease-out), target CSS properties, and specific visual outcomes (e.g., "1px downward shift," "shimmer gradient wipe") clearly defined for Claude 4 to generate correct code guidance?
+* **Deep Research Integration (Motion, Accessibility, Mobile):** Is my guidance thoroughly cross-referencing and synthesizing requirements from `P2_Motion_Design_Detailed_Specs_V1.md`, `Advanced_Accessibility_Techniques.md` (especially regarding keyboard interaction with dynamic elements and motion sensitivity), and `Mobile_Adaptation_Palantir_Viz.md` (for touch targets and mobile-specific animation performance)?
+* **Reinforcing "Purposeful Animation":** Am I consistently linking each animation back to its purpose (feedback, guidance, state change, enhancing clarity) to prevent purely decorative effects that would contradict the Palantir ethos?
+* **Performance as a Design Constraint for Interactivity:** Am I prompting the Developer to consider performance implications (CPU usage, jank, layout thrashing) *during* the implementation of animations and interactions, not just as a later testing step? (Apply interim best practices if specific CSS performance research is pending).
+* **"Reduce Motion" as a Universal Requirement:** Have I made it unequivocally clear that *all* non-essential animations must be disabled/minimized by the "Reduce Motion" feature? Is this a primary check in my review process?
+* **Clarity of "Definition of Done" for Complex Interactions:** For multifaceted interactive features like the Network Graph or Live API module, does the Definition of Done comprehensively cover all aspects of their functionality, appearance, and behavior?
+* **Consistency Check:** Am I ensuring that similar interactions (e.g., all modal openings, all hover states on primary buttons) use consistent animation timings and styles across the site?
+</self_audit_checklist>
+
+</claude_guide_phase>
